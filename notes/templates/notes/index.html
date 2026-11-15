@@ -1,5 +1,16 @@
 <h1>My Notes</h1>
 
+<h2>Add a new note</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="content" placeholder="Content" required></textarea>
+    <button type="submit">Save</button>
+</form>
+
+
+<h2>Saved notes</h2>
 {% for note in notes %}
     <h2>{{ note.title }}</h2>
     <p>{{ note.content }}</p>
