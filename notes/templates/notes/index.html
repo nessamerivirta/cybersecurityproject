@@ -1,5 +1,7 @@
 <h1>My Notes</h1>
 
+<p>Logged in as {{request.user.username}}</p>
+
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">Logout</button>

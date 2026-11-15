@@ -10,10 +10,15 @@ def index(request):
         title = request.POST.get("title")
         content = request.POST.get("content")
         if title and content:
-            Note.objects.create(title=title, content=content)
+            Note.objects.create(owner=request.user, title=title, content=content)
             return redirect("index")
-        
+    
+    # Flaw: Broken Access Control
     notes = Note.objects.all()
+    
+    # Fix: Only show the current logged-in user's notes
+    # notes = Note.objects.filter(owner=request.user)
+
     return render(request, "notes/index.html", {"notes": notes})
 
 def register(request):
